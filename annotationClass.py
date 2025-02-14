@@ -31,18 +31,21 @@ def make_imgID():   #객체 생성시마다 배열에 추가
 
 class Annotation:
     id = int
+    image_id = int
     category_id = int
     bbox = []
     segmentation = []
 
-    def __init__(self):
-        self.id=make_imgID()
+    def __init__(self, k_id, img_id, cate_id):
+        self.id=k_id
+        self.image_id = img_id
+        self.category_id = cate_id
 
-    def make_dic(self, cate_id, box, seg):
+    def make_dic(self, box, seg):
         dic = dict()
         dic["id"] = self.id
-        dic["image_id"] = 0
-        dic["category_id"] = cate_id
+        dic["image_id"] = self.image_id
+        dic["category_id"] = self.category_id
         dic["bbox"] = box
         dic["segmentation"] = seg
         return dic
